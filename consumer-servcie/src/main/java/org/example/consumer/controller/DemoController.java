@@ -1,14 +1,15 @@
 package org.example.consumer.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author chenbin
@@ -31,13 +32,14 @@ public class DemoController {
     private String valueForNacos;
 
     @RequestMapping("/test")
-    public String test() {
+    @ResponseBody
+    public Map<String, String> test() {
 
         System.out.println(valueForNacos);
         ServiceInstance serviceInstance = loadBalancerClient.choose("demo-service");
-        String path = String.format("http://%s:%s/%s",serviceInstance.getHost(),serviceInstance.getPort(),"demo/test");
-        String forObject = restTemplate.getForObject(path, String.class);
-        return "consumer"+forObject;
+        String path = String.format("http://%s:%s/%s", serviceInstance.getHost(), serviceInstance.getPort(), "demo/test");
+        Map<String, String> forObject = restTemplate.getForObject(path, Map.class);
+        return forObject;
     }
 
 

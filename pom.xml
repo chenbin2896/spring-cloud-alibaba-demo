@@ -10,6 +10,8 @@
     <modules>
         <module>gateway</module>
         <module>common</module>
+        <module>demo-service</module>
+        <module>consumer-servcie</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -17,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
         <spring.cloud.version>Hoxton.SR8</spring.cloud.version>
-        <spring.cloud.alibaba.version>2.2.3.RELEASE</spring.cloud.alibaba.version>
+        <spring.cloud.alibaba.version>2.1.2.RELEASE</spring.cloud.alibaba.version>
         <pagehelper-starter.version>1.2.10</pagehelper-starter.version>
         <pagehelper.version>5.1.8</pagehelper.version>
         <druid.version>1.1.10</druid.version>
@@ -132,12 +134,6 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-oss.version}</version>
-            </dependency>
-            <!--集成logstash-->
-            <dependency>
-                <groupId>net.logstash.logback</groupId>
-                <artifactId>logstash-logback-encoder</artifactId>
-                <version>${logstash-logback.version}</version>
             </dependency>
             <!--MinIO JAVA SDK-->
             <dependency>

@@ -1,5 +1,6 @@
 package org.example.consumer.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -32,6 +33,7 @@ public class DemoController {
     private String valueForNacos;
 
     @RequestMapping("/test")
+    @SentinelResource("test")
     @ResponseBody
     public Map<String, String> test() {
 

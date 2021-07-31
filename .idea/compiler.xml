@@ -9,6 +9,10 @@
         <module name="demo-service" />
         <module name="consumer-servcie" />
         <module name="common" />
+        <module name="es-service" />
+        <module name="redis-service" />
+        <module name="rocketmq-service" />
+        <module name="city-service" />
         <module name="gateway" />
       </profile>
     </annotationProcessing>
@@ -22,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
+      <module name="es-service" options="" />
       <module name="spring-cloud-alibaba-demo" options="" />
     </option>
   </component>

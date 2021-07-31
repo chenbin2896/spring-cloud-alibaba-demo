@@ -1,2 +1,10 @@
 server:
   port: 9002
+spring:
+  cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.43.100:8080
+      enabled: true
+

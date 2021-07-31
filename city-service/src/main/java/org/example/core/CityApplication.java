@@ -1,15 +1,15 @@
-package com.test.demo;
+package org.example.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author User
- * @version: V1.0
+ * @author chenbin
+ * @date 2021/7/31
  */
 @SpringBootApplication
-public class Application {
+public class CityApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class);
+        SpringApplication.run(CityApplication.class);
     }
 }

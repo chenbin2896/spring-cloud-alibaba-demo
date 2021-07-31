@@ -1,5 +1,7 @@
 package org.example.demoservice.controller;
 
+import org.example.demoservice.service.DemoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,4 +33,11 @@ public class DemoController {
         return map;
     }
 
+    @Autowired
+    private DemoService demoService;
+
+    @RequestMapping("/dubbo")
+    public String testService() {
+        return demoService.getValue();
+    }
 }

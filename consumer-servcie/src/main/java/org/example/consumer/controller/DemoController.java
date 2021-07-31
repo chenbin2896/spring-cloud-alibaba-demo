@@ -1,6 +1,7 @@
 package org.example.consumer.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import org.example.consumer.client.DemoClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -32,17 +33,19 @@ public class DemoController {
     @Value("${valueForNacos}")
     private String valueForNacos;
 
+    @Resource
+    private DemoClient demoClient;
+
     @RequestMapping("/test")
     @SentinelResource("test")
     @ResponseBody
     public Map<String, String> test() {
-
+        String value = demoClient.getValue();
         System.out.println(valueForNacos);
         ServiceInstance serviceInstance = loadBalancerClient.choose("demo-service");
         String path = String.format("http://%s:%s/%s", serviceInstance.getHost(), serviceInstance.getPort(), "demo/test");
         Map<String, String> forObject = restTemplate.getForObject(path, Map.class);
+        forObject.put("value", value);
         return forObject;
     }
-
-
 }

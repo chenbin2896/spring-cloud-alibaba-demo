@@ -26,6 +26,24 @@ public class Area implements Serializable {
     private String simplePy;
     private String perPinYin;
 
+    public Area() {
+    }
+
+    public Area(long id, long parentId, long level, String name, String wholeName, String lon, String lat, String cityCode, String zipCode, String areaCode, String pinYin, String simplePy, String perPinYin) {
+        this.id = id;
+        this.parentId = parentId;
+        this.level = level;
+        this.name = name;
+        this.wholeName = wholeName;
+        this.lon = lon;
+        this.lat = lat;
+        this.cityCode = cityCode;
+        this.zipCode = zipCode;
+        this.areaCode = areaCode;
+        this.pinYin = pinYin;
+        this.simplePy = simplePy;
+        this.perPinYin = perPinYin;
+    }
 
     public long getId() {
         return id;

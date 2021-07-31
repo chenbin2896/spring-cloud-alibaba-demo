@@ -1,11 +1,13 @@
-package org.example.core.common;
+package com.test.common;
+
+import java.io.Serializable;
 
 /**
  * 状态码
  *
  * @author Administrator
  */
-public class StatusCode {
+public class StatusCode implements Serializable {
     /**
      * 成功
      */

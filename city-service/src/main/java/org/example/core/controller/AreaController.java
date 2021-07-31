@@ -1,17 +1,13 @@
 package org.example.core.controller;
 
-import org.example.core.common.PageResult;
-import org.example.core.common.Result;
+import com.test.common.PageResult;
+import com.test.common.Result;
 import org.example.core.pojo.Area;
 import org.example.core.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 /**

@@ -5,17 +5,17 @@ import java.io.Serializable;
 /**
  * @author Administrator
  */
-public class Result implements Serializable {
+public class Result<T> implements Serializable {
 
     private boolean flag;
     private Integer code;
     private String message;
-    private Object data;
+    private T data;
 
     public Result() {
     }
 
-    public Result(boolean flag, Integer code, String message, Object data) {
+    public Result(boolean flag, Integer code, String message, T data) {
         super();
         this.flag = flag;
         this.code = code;
@@ -28,26 +28,6 @@ public class Result implements Serializable {
         this.flag = flag;
         this.code = code;
         this.message = message;
-    }
-
-    public static Result SUCCESS(String message, Object data) {
-        return new Result(true, StatusCode.OK, message, data);
-    }
-
-    public static Result SUCCESS(String message) {
-        return new Result(true, StatusCode.OK, message, null);
-    }
-
-    public static Result ERROR(String message) {
-        return new Result(false, StatusCode.OK, message, null);
-    }
-
-    public static Result ERROR(Integer code, String message) {
-        return new Result(false, code, message, null);
-    }
-
-    public static Result ERROR(Integer code, String message, Object data) {
-        return new Result(false, code, message, data);
     }
 
     public boolean isFlag() {
@@ -74,11 +54,11 @@ public class Result implements Serializable {
         this.message = message;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

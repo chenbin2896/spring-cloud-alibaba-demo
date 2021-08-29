@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "area")
-
 public class Area implements Serializable {
 
     @Id

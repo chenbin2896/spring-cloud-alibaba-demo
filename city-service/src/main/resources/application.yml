@@ -6,9 +6,13 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://192.168.43.100:3306/employees?useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://test.com:3306/employees?useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC&useSSL=false
   jpa:
     database: MySQL
     show-sql: true
 
-
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: org.example.core
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath:mapper/**/*.xml

@@ -4,7 +4,7 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.test.common.Result;
 import org.example.core.client.AreaClient;
-import org.example.core.dao.AreaRepository;
+import org.example.core.mapper.AreaRepository;
 import org.example.core.pojo.Area;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.stereotype.Service;

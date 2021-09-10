@@ -15,7 +15,8 @@
         <module>es-service</module>
         <module>redis-service</module>
         <module>rocketmq-service</module>
-        <module>city-service</module>
+        <module>mybatis-demo</module>
+        <module>canal-demo</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

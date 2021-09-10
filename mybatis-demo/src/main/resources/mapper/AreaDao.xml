@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mybatis.dao.AreaDao">
+
+    <resultMap type="org.example.mybatis.entity.Area" id="AreaMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="wholeName" column="whole_name" jdbcType="VARCHAR"/>
+        <result property="lon" column="lon" jdbcType="VARCHAR"/>
+        <result property="lat" column="lat" jdbcType="VARCHAR"/>
+        <result property="cityCode" column="city_code" jdbcType="VARCHAR"/>
+        <result property="zipCode" column="zip_code" jdbcType="VARCHAR"/>
+        <result property="areaCode" column="area_code" jdbcType="VARCHAR"/>
+        <result property="pinYin" column="pin_yin" jdbcType="VARCHAR"/>
+        <result property="simplePy" column="simple_py" jdbcType="VARCHAR"/>
+        <result property="perPinYin" column="per_pin_yin" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AreaMap">
+        select id,
+               parent_id,
+               level,
+               name,
+               whole_name,
+               lon,
+               lat,
+               city_code,
+               zip_code,
+               area_code,
+               pin_yin,
+               simple_py,
+               per_pin_yin
+        from area
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AreaMap">
+        select
+        id, parent_id, level, name, whole_name, lon, lat, city_code, zip_code, area_code, pin_yin, simple_py,
+        per_pin_yin
+        from area
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="level != null">
+                and level = #{level}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="wholeName != null and wholeName != ''">
+                and whole_name = #{wholeName}
+            </if>
+            <if test="lon != null and lon != ''">
+                and lon = #{lon}
+            </if>
+            <if test="lat != null and lat != ''">
+                and lat = #{lat}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                and city_code = #{cityCode}
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                and zip_code = #{zipCode}
+            </if>
+            <if test="areaCode != null and areaCode != ''">
+                and area_code = #{areaCode}
+            </if>
+            <if test="pinYin != null and pinYin != ''">
+                and pin_yin = #{pinYin}
+            </if>
+            <if test="simplePy != null and simplePy != ''">
+                and simple_py = #{simplePy}
+            </if>
+            <if test="perPinYin != null and perPinYin != ''">
+                and per_pin_yin = #{perPinYin}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from area
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="level != null">
+                and level = #{level}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="wholeName != null and wholeName != ''">
+                and whole_name = #{wholeName}
+            </if>
+            <if test="lon != null and lon != ''">
+                and lon = #{lon}
+            </if>
+            <if test="lat != null and lat != ''">
+                and lat = #{lat}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                and city_code = #{cityCode}
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                and zip_code = #{zipCode}
+            </if>
+            <if test="areaCode != null and areaCode != ''">
+                and area_code = #{areaCode}
+            </if>
+            <if test="pinYin != null and pinYin != ''">
+                and pin_yin = #{pinYin}
+            </if>
+            <if test="simplePy != null and simplePy != ''">
+                and simple_py = #{simplePy}
+            </if>
+            <if test="perPinYin != null and perPinYin != ''">
+                and per_pin_yin = #{perPinYin}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into area(parent_id, level, name, whole_name, lon, lat, city_code, zip_code, area_code, pin_yin,
+                         simple_py, per_pin_yin)
+        values (#{parentId}, #{level}, #{name}, #{wholeName}, #{lon}, #{lat}, #{cityCode}, #{zipCode}, #{areaCode},
+                #{pinYin}, #{simplePy}, #{perPinYin})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into area(parent_id, level, name, whole_name, lon, lat, city_code, zip_code, area_code, pin_yin,
+        simple_py, per_pin_yin)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.parentId}, #{entity.level}, #{entity.name}, #{entity.wholeName}, #{entity.lon}, #{entity.lat},
+            #{entity.cityCode}, #{entity.zipCode}, #{entity.areaCode}, #{entity.pinYin}, #{entity.simplePy},
+            #{entity.perPinYin})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into area(parent_id, level, name, whole_name, lon, lat, city_code, zip_code, area_code, pin_yin,
+        simple_py, per_pin_yin)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.parentId}, #{entity.level}, #{entity.name}, #{entity.wholeName}, #{entity.lon}, #{entity.lat},
+            #{entity.cityCode}, #{entity.zipCode}, #{entity.areaCode}, #{entity.pinYin}, #{entity.simplePy},
+            #{entity.perPinYin})
+        </foreach>
+        on duplicate key update
+        parent_id = values(parent_id),
+        level = values(level),
+        name = values(name),
+        whole_name = values(whole_name),
+        lon = values(lon),
+        lat = values(lat),
+        city_code = values(city_code),
+        zip_code = values(zip_code),
+        area_code = values(area_code),
+        pin_yin = values(pin_yin),
+        simple_py = values(simple_py),
+        per_pin_yin = values(per_pin_yin)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update area
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="wholeName != null and wholeName != ''">
+                whole_name = #{wholeName},
+            </if>
+            <if test="lon != null and lon != ''">
+                lon = #{lon},
+            </if>
+            <if test="lat != null and lat != ''">
+                lat = #{lat},
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                city_code = #{cityCode},
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                zip_code = #{zipCode},
+            </if>
+            <if test="areaCode != null and areaCode != ''">
+                area_code = #{areaCode},
+            </if>
+            <if test="pinYin != null and pinYin != ''">
+                pin_yin = #{pinYin},
+            </if>
+            <if test="simplePy != null and simplePy != ''">
+                simple_py = #{simplePy},
+            </if>
+            <if test="perPinYin != null and perPinYin != ''">
+                per_pin_yin = #{perPinYin},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from area
+        where id = #{id}
+    </delete>
+
+</mapper>
+

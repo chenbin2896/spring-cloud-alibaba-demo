@@ -9,15 +9,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo-service" />
         <module name="consumer-servcie" />
+        <module name="canal-demo" />
         <module name="common" />
         <module name="es-service" />
         <module name="redis-service" />
+        <module name="mybatis-demo" />
         <module name="rocketmq-service" />
-        <module name="city-service" />
         <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="city-service" target="1.8" />
       <module name="consumer-service" target="8" />
       <module name="consumer-service1" target="8" />
       <module name="demo" target="1.8" />
